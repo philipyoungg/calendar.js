@@ -47,7 +47,7 @@ with `moment.js` you could convert numeral value to readable day format.
 ##### example 
 ```javascript
 // cal.month = 08
-moment(cal.month, ‘M’).format(‘MMMM’) // August
+moment(cal.month, 'M').format('MMMM') // August
 
 // cal.dayNumber = [1, 2, 3, 4, 5, 6, 0]
 var dayName = cal.dayNumber.map(function(day) {
