@@ -33,16 +33,16 @@ console.log(cal)
 // year: 2016
 ```
 
-`data` is an array which contains an array in week
-`dayNumber` is day in number format. 0 is Sunday. Used if you want to render the day header in month view
-`month` is the current month
-`year` is the current year
-`startDay` is the start day in number format // 0 = Sunday
+- `data` is an array which contains an array in week
+- `dayNumber` is day in number format. 0 is Sunday. Used if you want to render the day header in month view
+- `month` is the current month
+- `year` is the current year
+- `startDay` is the start day in number format // 0 = Sunday
 
 with `moment.js` you could convert numeral value to readable day format.
 
 ### example 
-```javscript
+```javascript
 // cal.month = 08
 moment(cal.month, ‘M’).format(‘MMMM’) // August
 
