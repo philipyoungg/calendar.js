@@ -22,11 +22,12 @@
         month: month + 1,
         year: year,
         startDay: startDay,
-        dayInNumber: generateDayNumber(startDay),
+        dayNumber: generateDayNumber(startDay),
       }
     }
 
     function generateCalendarMonthArray(y, m, sd) {
+      console.log(y)
       date = new Date(y, m, 1)
       // get the offset date in week (month view)
       extra = (date.getDay() + 7 - sd) % 7
@@ -39,7 +40,11 @@
         // reset the week array on new loop
         arrWeek = []
         for (var i = 0; i < 7; i++) {
-          arrWeek.push(date.getDate())
+          if (date.getMonth() !== month ) {
+            arrWeek.push(0)
+          } else {
+            arrWeek.push(date.getDate())
+          }
           date.setDate(date.getDate() + 1)
         }
         arrMonth.push(arrWeek)
@@ -90,12 +95,15 @@
       }
 
       // if startDay is undefined, return startDay as Sunday
-      startDay = Number(config.startDay) || 0,
+      startDay = Number(config.startDay) || 0
 
       today = new Date()
-      // make January become 1 instead of 0
-      month = config.month - 1|| today.getMonth(),
-      year = config.year || today.getFullYear(),
+      month = config.month - 1
+      year = config.year || today.getFullYear()
+
+      if (typeof config.month === 'undefined') {
+        month = today.getMonth()
+      }
 
       // all initialization data was success
       initSuccess = true
