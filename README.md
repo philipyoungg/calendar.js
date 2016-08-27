@@ -9,7 +9,7 @@ A bare minimum calendar that could be used to render UI from the array. I made t
 *component coming soon*
 
 ## Dependencies 
-- `moment.js` *likely you’ll would also use this module to your *project
+- `moment.js` *likely you’ll would also use this module to your project*
 
 ## How to use 
 ```javascript
