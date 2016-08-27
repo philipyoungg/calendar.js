@@ -8,7 +8,7 @@ A bare minimum calendar that could be used to render UI from the array
 I made this to create a bare bone month view for my personal project in React // Component coming soon
 
 ## Dependencies 
-Moment.js
+`moment.js`
 Most likely you’ll would also use this module to your project
 
 ## How to use 
@@ -16,17 +16,17 @@ Most likely you’ll would also use this module to your project
 // if no arguments provided, the function defaults to current month and year
 var config = {
 	month: 8,
-	year: 2016
+	year: 2016,
 	startDay: 1 // equivalent to Monday
 }
 var cal = calendar(config);
 console.log(cal)
 
 // data: [[1, 2, 3, 4, 5, 6, 7], 
-// 			[8, 9, 10, 11, 12, 13, 14], 
-// 			[15, 16, 17, 18, 19, 20, 21], 
-// 			[22, 23, 24, 25, 26, 27, 28], 
-// 			[29, 30, 31, 0, 0, 0, 0]],
+// [8, 9, 10, 11, 12, 13, 14], 
+// [15, 16, 17, 18, 19, 20, 21], 
+// [22, 23, 24, 25, 26, 27, 28], 
+// [29, 30, 31, 0, 0, 0, 0]],
 // dayNumber: [1, 2, 3, 4, 5, 6, 0],
 // month: 8,
 // startDay: 1,
@@ -59,7 +59,7 @@ console.log(dayName) // ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
 pass object to the function
 
 **month**
-```javscript
+```javascript
 // Pass the month in number format
 var cal = calendar({
 	month: 1 // January.
@@ -67,16 +67,16 @@ var cal = calendar({
 ```
 
 **year**
-```javscript
-// Pass the month in number format
+```javascript
+// Pass the year in number format
 var cal = calendar({
 	year: 2016
 });
 ```
 
 **startDay**
-```javscript
-// Pass the month in number format
+```javascript
+// Pass the startDay in number format
 var cal = calendar({
 	startDay: 6 // month view start in Saturday
 });
