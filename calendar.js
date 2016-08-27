@@ -96,10 +96,6 @@
     }
   }
 
-  if ( typeof calendar === 'undefined') {
-    window.calendar = calendar
-  } else {
-    alert("calendar already defined.");
-  }
+  window.calendar = calendar
 
 })(window)
