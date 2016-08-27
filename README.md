@@ -1,5 +1,6 @@
 # calendar.js
 *documentation still in development*
+
 a function that returns chosen month in array
 
 ## Motivation
