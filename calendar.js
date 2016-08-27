@@ -13,14 +13,6 @@
 
     initialize()
 
-    return {
-      data: generateCalendarMonthArray(firstDayInMonth, daysInMonth),
-      dayNumber: generateDayNumber(startDay, 7),
-      month: thisMonth,
-      year: thisYear,
-      startDay: startDay
-    }
-
     function generateCalendarMonthArray(firstDayInMonth, daysInMonth) {
       // expected return: an array which contains week array
       var arrMonth = []
@@ -85,6 +77,14 @@
         config.startDay = 6
       }
 
+      if (config.month >= 13 || config.month <= 0) {
+        return alert('specify month between 1 and 12')
+      }
+
+      if (config.year <= 0) {
+        return alert('specify a valid year')
+      }
+
       // if startDay is undefined, return startDay as Sunday
       startDay = config.startDay || 0,
       thisMonth = config.month || moment().format('MM'),
@@ -93,6 +93,14 @@
       fullDateFormat = 'YYYY,MM,DD',
       daysInMonth = moment(askedDate, fullDateFormat).daysInMonth(),
       firstDayInMonth = absoluteThreshold(moment(askedDate, fullDateFormat).format('d') - startDay, 7)
+
+      return {
+        data: generateCalendarMonthArray(firstDayInMonth, daysInMonth),
+        dayNumber: generateDayNumber(startDay, 7),
+        month: thisMonth,
+        year: thisYear,
+        startDay: startDay
+      }
     }
   }
 
