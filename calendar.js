@@ -99,7 +99,7 @@
       // if startDay is undefined, return startDay as Sunday
       startDay = Number(config.startDay) || 0,
       thisMonth = Number(config.month) || Number(moment().format('MM')),
-      thisYear = Number(config.year) || Number(moment().format('YYYY').toNumber()),
+      thisYear = Number(config.year) || Number(moment().format('YYYY')),
       askedDate = thisYear.toString().concat(',').concat(thisMonth.toString()).concat(',').concat('01'),
       fullDateFormat = 'YYYY,MM,DD',
       daysInMonth = moment(askedDate, fullDateFormat).daysInMonth(),
