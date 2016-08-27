@@ -9,7 +9,7 @@
     askedDate,
     fullDateFormat,
     daysInMonth,
-    firstDayInMonth
+    firstDayInMonth,
     initSuccess
 
     initialize()
@@ -98,8 +98,8 @@
 
       // if startDay is undefined, return startDay as Sunday
       startDay = config.startDay || 0,
-      thisMonth = config.month || moment().format('MM'),
-      thisYear = config.year || moment().format('YYYY'),
+      thisMonth = config.month || moment().format('MM').toNumber(),
+      thisYear = config.year || moment().format('YYYY').toNumber(),
       askedDate = thisYear.toString().concat(',').concat(thisMonth.toString()).concat(',').concat('01'),
       fullDateFormat = 'YYYY,MM,DD',
       daysInMonth = moment(askedDate, fullDateFormat).daysInMonth(),
