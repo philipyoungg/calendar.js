@@ -4,10 +4,11 @@
   function calendar(config) {
 
     var startDay,
-    thisMonth,
-    thisYear,
-    askedDate,
-    fullDateFormat,
+    today,
+    month,
+    year,
+    date,
+    extra,
     daysInMonth,
     firstDayInMonth,
     initSuccess
@@ -16,51 +17,51 @@
 
     if (initSuccess) {
       return {
-        data: generateCalendarMonthArray(firstDayInMonth, daysInMonth),
-        dayNumber: generateDayNumber(startDay, 7),
-        month: thisMonth,
-        year: thisYear,
-        startDay: startDay
+        data: generateCalendarMonthArray(year, month, startDay),
+        // add index so January = 1
+        month: month + 1,
+        year: year,
+        startDay: startDay,
+        dayInNumber: generateDayNumber(startDay),
       }
     }
 
-    function generateCalendarMonthArray(firstDayInMonth, daysInMonth) {
-      // expected return: an array which contains week array
+    function generateCalendarMonthArray(y, m, sd) {
+      date = new Date(y, m, 1)
+      // get the offset date in week (month view)
+      extra = (date.getDay() + 7 - sd) % 7
+      date.setDate(date.getDate() - extra)
+
       var arrMonth = []
       var arrWeek = []
-      var arrDate = 0
-      // keep looping while date still not = total days in month
-      while (arrDate !== daysInMonth) {
+      // keep looping until next month comes
+      while (true) {
         // reset the week array on new loop
         arrWeek = []
         for (var i = 0; i < 7; i++) {
-          if (arrDate === 0 && i < firstDayInMonth || arrDate >= daysInMonth) {
-            arrWeek.push(0);
-          } else {
-            arrDate += 1
-            arrWeek.push(arrDate)
-          }
+          arrWeek.push(date.getDate())
+          date.setDate(date.getDate() + 1)
         }
         arrMonth.push(arrWeek)
+        // stop looping if the last week array contains next month date
+        if (date.getMonth() !== month ) {
+          break
+        }
       }
       return arrMonth
     }
 
-    function generateDayNumber(startDay, threshold) {
+    function generateDayNumber(sd) {
       var dayInNumber = []
+      var _startDay = sd
       for (var i = 0; i < 7; i++) {
-        dayInNumber.push(absoluteThreshold(i + startDay, threshold))
+        if(_startDay > 7) {
+          _startDay = 0
+        }
+        dayInNumber.push(_startDay)
+        _startDay += 1
       }
       return dayInNumber
-    }
-
-    function absoluteThreshold(day, threshold) {
-      if (day < 0) {
-        return (day % threshold) + threshold
-      } else if (day >= threshold) {
-        return day % threshold
-      }
-      return day
     }
 
     function initialize() {
@@ -69,7 +70,7 @@
       }
 
       if (typeof config.startDay === 'undefined') {
-        config.startDay = 'Sun'
+        config.startDay = 'Mon'
       }
 
       if (typeof config.startDay === 'string') {
@@ -88,22 +89,15 @@
         config.startDay = 6
       }
 
-      if (config.month >= 13 || config.month <= 0) {
-        return alert('specify month between 1 and 12')
-      }
-
-      if (config.year <= 0) {
-        return alert('specify a valid year')
-      }
-
       // if startDay is undefined, return startDay as Sunday
       startDay = Number(config.startDay) || 0,
-      thisMonth = Number(config.month) || Number(moment().format('MM')),
-      thisYear = Number(config.year) || Number(moment().format('YYYY')),
-      askedDate = thisYear.toString().concat(',').concat(thisMonth.toString()).concat(',').concat('01'),
-      fullDateFormat = 'YYYY,MM,DD',
-      daysInMonth = moment(askedDate, fullDateFormat).daysInMonth(),
-      firstDayInMonth = absoluteThreshold(moment(askedDate, fullDateFormat).format('d') - startDay, 7)
+
+      today = new Date()
+      // make January become 1 instead of 0
+      month = config.month - 1|| today.getMonth(),
+      year = config.year || today.getFullYear(),
+
+      // all initialization data was success
       initSuccess = true
     }
   }
