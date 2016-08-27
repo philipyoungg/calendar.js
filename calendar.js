@@ -10,8 +10,19 @@
     fullDateFormat,
     daysInMonth,
     firstDayInMonth
+    initSuccess
 
     initialize()
+
+    if (initSuccess) {
+      return {
+        data: generateCalendarMonthArray(firstDayInMonth, daysInMonth),
+        dayNumber: generateDayNumber(startDay, 7),
+        month: thisMonth,
+        year: thisYear,
+        startDay: startDay
+      }
+    }
 
     function generateCalendarMonthArray(firstDayInMonth, daysInMonth) {
       // expected return: an array which contains week array
@@ -93,14 +104,7 @@
       fullDateFormat = 'YYYY,MM,DD',
       daysInMonth = moment(askedDate, fullDateFormat).daysInMonth(),
       firstDayInMonth = absoluteThreshold(moment(askedDate, fullDateFormat).format('d') - startDay, 7)
-
-      return {
-        data: generateCalendarMonthArray(firstDayInMonth, daysInMonth),
-        dayNumber: generateDayNumber(startDay, 7),
-        month: thisMonth,
-        year: thisYear,
-        startDay: startDay
-      }
+      initSuccess = true
     }
   }
 
