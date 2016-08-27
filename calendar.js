@@ -27,7 +27,6 @@
     }
 
     function generateCalendarMonthArray(y, m, sd) {
-      console.log(y)
       date = new Date(y, m, 1)
       // get the offset date in week (month view)
       extra = (date.getDay() + 7 - sd) % 7
