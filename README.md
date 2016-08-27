@@ -5,7 +5,9 @@ a function that returns chosen month in array
 ## Motivation
 A bare minimum calendar that could be used to render UI from the array
 
-I made this to create a bare bone month view for my personal project in React // Component coming soon
+I made this to create a bare bone month view for my personal project in React
+
+*component coming soon*
 
 ## Dependencies 
 `moment.js`
@@ -37,11 +39,11 @@ console.log(cal)
 - `dayNumber` is day in number format. 0 is Sunday. Used if you want to render the day header in month view
 - `month` is the current month
 - `year` is the current year
-- `startDay` is the start day in number format // 0 = Sunday
+- `startDay` is the start day in number format
 
 with `moment.js` you could convert numeral value to readable day format.
 
-### example 
+##### example 
 ```javascript
 // cal.month = 08
 moment(cal.month, ‘M’).format(‘MMMM’) // August
@@ -58,7 +60,7 @@ console.log(dayName) // ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
 ## API
 pass object to the function
 
-**month**
+##### month
 ```javascript
 // Pass the month in number format
 var cal = calendar({
@@ -66,7 +68,7 @@ var cal = calendar({
 });
 ```
 
-**year**
+##### year
 ```javascript
 // Pass the year in number format
 var cal = calendar({
@@ -74,7 +76,7 @@ var cal = calendar({
 });
 ```
 
-**startDay**
+##### startDay
 ```javascript
 // Pass the startDay in number format
 var cal = calendar({
