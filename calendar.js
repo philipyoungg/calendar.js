@@ -1,114 +1,119 @@
-(function(window) {
-  'use strict';
+function calendar(config) {
 
-  function calendar(config) {
+  var startDay,
+  today,
+  month,
+  year,
+  daysInMonth,
+  firstDayInMonth,
+  initSuccess
 
-    var startDay,
-    today,
-    month,
-    year,
-    date,
-    extra,
-    daysInMonth,
-    firstDayInMonth,
-    initSuccess
+  initialize()
 
-    initialize()
-
-    if (initSuccess) {
-      return {
-        data: generateCalendarMonthArray(year, month, startDay),
-        // add index so January = 1
-        month: month + 1,
-        year: year,
-        startDay: startDay,
-        dayNumber: generateDayNumber(startDay),
-      }
-    }
-
-    function generateCalendarMonthArray(y, m, sd) {
-      date = new Date(y, m, 1)
-      // get the offset date in week (month view)
-      extra = (date.getDay() + 7 - sd) % 7
-      date.setDate(date.getDate() - extra)
-
-      var arrMonth = []
-      var arrWeek = []
-      // keep looping until next month comes
-      while (true) {
-        // reset the week array on new loop
-        arrWeek = []
-        for (var i = 0; i < 7; i++) {
-          if (date.getMonth() !== month ) {
-            arrWeek.push(0)
-          } else {
-            arrWeek.push(date.getDate())
-          }
-          date.setDate(date.getDate() + 1)
-        }
-        arrMonth.push(arrWeek)
-        // stop looping if the last week array contains next month date
-        if (date.getMonth() !== month ) {
-          break
-        }
-      }
-      return arrMonth
-    }
-
-    function generateDayNumber(sd) {
-      var dayInNumber = []
-      var _startDay = sd
-      for (var i = 0; i < 7; i++) {
-        if(_startDay > 7) {
-          _startDay = 0
-        }
-        dayInNumber.push(_startDay)
-        _startDay += 1
-      }
-      return dayInNumber
-    }
-
-    function initialize() {
-      if (typeof config === 'undefined') {
-        config = {}
-      }
-
-      if (typeof config.startDay === 'undefined') {
-        config.startDay = 'Mon'
-      }
-
-      if (typeof config.startDay === 'string') {
-        config.startDay = config.startDay.toUpperCase()
-      }
-
-      if (config.startDay === 'SUN' || config.startDay === 'SUNDAY') {
-        config.startDay = 0
-      }
-
-      if (config.startDay === 'MON' || config.startDay === 'MONDAY') {
-        config.startDay = 1
-      }
-
-      if (config.startDay === 'SAT' || config.startDay === 'SATURDAY') {
-        config.startDay = 6
-      }
-
-      // if startDay is undefined, return startDay as Sunday
-      startDay = Number(config.startDay) || 0
-
-      today = new Date()
-      month = config.month - 1
-      year = config.year || today.getFullYear()
-
-      if (typeof config.month === 'undefined') {
-        month = today.getMonth()
-      }
-
-      // all initialization data was success
-      initSuccess = true
-    }
+  return {
+    data: generateMonthArray(newDateOffset(year, month, 1, startDay), month),
+    // add index so January = 1
+    month: month + 1,
+    year: year,
+    startDay: startDay,
+    dayNumber: generateDayNumber(startDay),
   }
 
-  window.calendar = calendar
+  function resetDate(date) {
+    return new Date(date.getTime())
+  }
 
-})(window)
+  function newDateOffset(year, month, day, offset) {
+    var date = new Date(year, month, day)
+    // get the offset date in week (month view)
+    var extra = (date.getDay() + 7 - offset) % 7
+    date.setDate(date.getDate() - extra)
+    return date
+  }
+
+  function generateDayInMonthView(date, month) {
+    var date = resetDate(date)
+    if (date.getMonth() !== month ) {
+      return 0
+    }
+    return date.getDate()
+  }
+
+  function generateWeekInMonthView(date, month) {
+    var date = resetDate(date)
+    var arrWeek = []
+    for (var i = 0; i < 7; i++) {
+      arrWeek.push(generateDayInMonthView(date, month))
+      date.setDate(date.getDate() + 1)
+    }
+    return arrWeek
+  }
+
+  // function generateWeekInMonthView(arr, date, month) {
+  //   var date = resetDate(date)
+  //   var newArr = arr.concat(generateDayInMonthView(date, month))
+  //   date.setDate(date.getDate() + 1)
+  //   if (arr.length === 7) {
+  //     return newArr
+  //   } else {
+  //     return generateWeekInMonthView(newArr, date, month)
+  //   }
+  // }
+
+  function generateMonthArray(date, month) {
+    var date = resetDate(date)
+    var arrMonth = []
+    for (var i = 0; i < 6; i++) {
+      arrMonth.push(generateWeekInMonthView(date, month))
+      date.setDate(date.getDate() + 7)
+    }
+    return arrMonth
+  }
+
+  function generateDayNumber(sd) {
+    var dayInNumber = []
+    for (var i = 0; i < 7; i++) {
+      dayInNumber.push((sd + i) % 7)
+    }
+    return dayInNumber
+  }
+
+  function initialize() {
+    if (typeof config === 'undefined') {
+      config = {}
+    }
+
+    if (typeof config.startDay === 'undefined') {
+      config.startDay = 'Mon'
+    }
+
+    if (typeof config.startDay === 'string') {
+      config.startDay = config.startDay.toUpperCase()
+    }
+
+    if (config.startDay === 'SUN' || config.startDay === 'SUNDAY') {
+      config.startDay = 0
+    }
+
+    if (config.startDay === 'MON' || config.startDay === 'MONDAY') {
+      config.startDay = 1
+    }
+
+    if (config.startDay === 'SAT' || config.startDay === 'SATURDAY') {
+      config.startDay = 6
+    }
+
+    // if startDay is undefined, return startDay as Sunday
+    today = new Date()
+    startDay = Number(config.startDay) || 0
+    month = config.month - 1
+    year = config.year || today.getFullYear()
+
+    if (typeof config.month === 'undefined') {
+      month = today.getMonth()
+    }
+
+    // all initialization data was success
+    initSuccess = true
+  }
+}
