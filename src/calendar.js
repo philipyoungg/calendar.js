@@ -20,29 +20,29 @@ const calendar = (config = {}) => {
   }
 
   function generateDayInMonthView(date, m) {
-    const resetedDate = resetDate(date);
-    if (resetedDate.getMonth() !== m) {
+    const rd = resetDate(date);
+    if (rd.getMonth() !== m) {
       return 0;
     }
-    return resetedDate.getDate();
+    return rd.getDate();
   }
 
   function generateWeekInMonthView(date, m) {
-    const resetedDate = resetDate(date);
+    const rd = resetDate(date);
     const arrWeek = [];
     for (let i = 0; i < 7; i++) {
-      arrWeek.push(generateDayInMonthView(resetedDate, m));
-      resetedDate.setDate(resetedDate.getDate() + 1);
+      arrWeek.push(generateDayInMonthView(rd, m));
+      rd.setDate(rd.getDate() + 1);
     }
     return arrWeek;
   }
 
   function generateMonthArray(date, m) {
-    const resetedDate = resetDate(date);
+    const rd = resetDate(date);
     const arrMonth = [];
     for (let i = 0; i < 6; i++) {
-      arrMonth.push(generateWeekInMonthView(resetedDate, m));
-      resetedDate.setDate(resetedDate.getDate() + 7);
+      arrMonth.push(generateWeekInMonthView(rd, m));
+      rd.setDate(rd.getDate() + 7);
     }
     return arrMonth;
   }

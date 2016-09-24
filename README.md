@@ -15,7 +15,7 @@ A bare minimum calendar that could be used to render UI from the array. I made t
 var config = {
 	month: 8,
 	year: 2016,
-	startDay: 0 // equivalent to Monday
+	startDay: 0 // equivalent to Sunday
 }
 var cal = calendar(config);
 console.log(cal)
@@ -61,7 +61,8 @@ pass object to the function
 
 ##### month
 ```javascript
-// Pass the month in number format
+// Pass the month in number format (1 = January to 12 = December)
+// default to current Month
 var cal = calendar({
 	month: 1 // January.
 });
@@ -70,6 +71,7 @@ var cal = calendar({
 ##### year
 ```javascript
 // Pass the year in number format
+// default to current Year
 var cal = calendar({
 	year: 2016
 });
@@ -77,7 +79,8 @@ var cal = calendar({
 
 ##### startDay
 ```javascript
-// Pas the day in number format
+// Pas the day in number format (0 = Sunday to 6 = Saturday)
+// default to Monday (1)
 var cal = calendar({
 	startDay: 6 // month view start in Saturday
 });
