@@ -1,6 +1,6 @@
 # calendar.js
 
-**Currently works in Node environment only**
+*works in browser and node environment*
 
 a function that returns chosen month in array
 
