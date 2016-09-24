@@ -1,6 +1,6 @@
 {
   "name": "@philipyoungg/calendar",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "a function that returns calendar in array format",
   "main": "calendar.js",
   "scripts": {
