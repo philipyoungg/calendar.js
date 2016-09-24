@@ -2,7 +2,7 @@
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-(function (window) {
+(function () {
   var Calendar = function Calendar() {
     var config = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
@@ -111,4 +111,4 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       });
     }
   }
-})(undefined);
+})();

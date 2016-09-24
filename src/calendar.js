@@ -1,5 +1,5 @@
-((window) => {
-  const Calendar = (config = {}) => {
+(() => {
+  const calendar = (config = {}) => {
     let startDay;
     let today;
     let month;
@@ -104,4 +104,4 @@
     }
   }
 
-})(this);
+})();
