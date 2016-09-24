@@ -127,3 +127,5 @@ function calendar(config) {
     initSuccess = true
   }
 }
+
+module.exports = calendar
