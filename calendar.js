@@ -11,7 +11,7 @@ function calendar(config) {
   initialize()
 
   return {
-    data: generateMonthArray(newDateOffset(year, month, 1, startDay), month),
+    data: generateMonthArray(newDateOffset(newDate(year, month, 1), startDay), month),
     // add index so January = 1
     month: month + 1,
     year: year,
@@ -23,8 +23,11 @@ function calendar(config) {
     return new Date(date.getTime())
   }
 
-  function newDateOffset(year, month, day, offset) {
-    var date = new Date(year, month, day)
+  function newDate(year, month, day) {
+    return new Date(year, month, day)
+  }
+
+  function newDateOffset(date, offset) {
     // get the offset date in week (month view)
     var extra = (date.getDay() + 7 - offset) % 7
     date.setDate(date.getDate() - extra)
@@ -79,21 +82,28 @@ function calendar(config) {
   }
 
   function initialize() {
-    if (typeof config === 'undefined') {
-      config = {}
-    }
+    // if (typeof config === 'undefined') {
+    //   config = {}
+    // }
+    config || {}
 
-    if (typeof config.startDay === 'undefined') {
-      config.startDay = 'Mon'
-    }
+    config.startDay || config.startDay = 'Mon'
 
-    if (typeof config.startDay === 'string') {
-      config.startDay = config.startDay.toUpperCase()
-    }
+    // if (typeof config.startDay === 'undefined') {
+    //   config.startDay = 'Mon'
+    // }
 
-    if (config.startDay === 'SUN' || config.startDay === 'SUNDAY') {
-      config.startDay = 0
-    }
+    config.startDay.toUpperCase()
+
+    // if (typeof config.startDay === 'string') {
+    //   config.startDay = config.startDay.toUpperCase()
+    // }
+
+    config.startDay === 'SUN' || config.startDay === 'SUNDAY' ? config.startDay = 0
+
+    // if (config.startDay === 'SUN' || config.startDay === 'SUNDAY') {
+    //   config.startDay = 0
+    // }
 
     if (config.startDay === 'MON' || config.startDay === 'MONDAY') {
       config.startDay = 1

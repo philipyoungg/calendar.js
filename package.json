@@ -1,0 +1,22 @@
+{
+  "name": "@philipyoungg/calendar",
+  "version": "0.1.0",
+  "description": "a function that returns calendar in array format",
+  "main": "calendar.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/philipyoungg/calendar.js.git"
+  },
+  "keywords": [
+    "calendar"
+  ],
+  "author": "Philip Young Gunawan <hello@philipyoungg.com> (http://www.philipyoungg.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/philipyoungg/calendar.js/issues"
+  },
+  "homepage": "https://github.com/philipyoungg/calendar.js#readme"
+}
