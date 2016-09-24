@@ -1,9 +1,7 @@
 'use strict';
 
 var calendar = function calendar() {
-  var config = arguments.length <= 0 || arguments[0] === undefined ? {
-    startday: 'MON'
-  } : arguments[0];
+  var config = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
   var startDay = void 0;
   var today = void 0;
@@ -62,7 +60,8 @@ var calendar = function calendar() {
   }
 
   var initialize = function initialize() {
-    config.startDay.toUpperCase();
+    if (!config.startDay) config.startDay = 'MON';
+    if (typeof config.startDay === 'string') config.startDay.toUpperCase();
 
     if (config.startDay === 'SUN' || config.startDay === 'SUNDAY') {
       config.startDay = 0;
@@ -76,7 +75,6 @@ var calendar = function calendar() {
       config.startDay = 6;
     }
 
-    // if startDay is undefined, return startDay as Sunday
     today = new Date();
     startDay = Number(config.startDay) || 0;
     month = config.month - 1;
