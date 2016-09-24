@@ -56,7 +56,8 @@ const calendar = (config = {}) => {
   }
 
   const initialize = () => {
-    if (!config.startDay) config.startDay = 'MON';
+    if (typeof config.startDay === 'undefined') config.startDay = 1;
+
     if (typeof config.startDay === 'string') config.startDay.toUpperCase();
 
     if (config.startDay === 'SUN' || config.startDay === 'SUNDAY') {
@@ -72,7 +73,7 @@ const calendar = (config = {}) => {
     }
 
     today = new Date();
-    startDay = Number(config.startDay) || 0;
+    startDay = Number(config.startDay);
     month = config.month - 1;
     year = config.year || today.getFullYear();
 

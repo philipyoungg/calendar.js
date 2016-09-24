@@ -1,5 +1,6 @@
-# calendar.js (Currently works in Node environment only)
-*documentation still in development*
+# calendar.js
+
+**Currently works in Node environment only**
 
 a function that returns chosen month in array
 
@@ -14,7 +15,7 @@ A bare minimum calendar that could be used to render UI from the array. I made t
 var config = {
 	month: 8,
 	year: 2016,
-	startDay: 1 // equivalent to Monday
+	startDay: 0 // equivalent to Monday
 }
 var cal = calendar(config);
 console.log(cal)
@@ -28,7 +29,7 @@ console.log(cal)
 //  ],
 //  dayNumber: [1, 2, 3, 4, 5, 6, 0],
 //  month: 8,
-//  startDay: 1,
+//  startDay: 0,
 //  year: 2016
 // }
 ```
