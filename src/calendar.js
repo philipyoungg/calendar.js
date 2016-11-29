@@ -1,4 +1,4 @@
-(() => {
+((window) => {
   const calendar = (config = {}) => {
     let startDay;
     let today;
@@ -95,13 +95,12 @@
     };
   };
 
-  if (typeof module === "object" && module && typeof module.exports === "object") {
+  if (typeof module === 'object' && module && typeof module.exports === 'object') {
     module.exports = calendar;
   } else {
-    window.calendar = calendar
-    if (typeof define === "function" && define.amd) {
-      define("calendar", [], function () { return calendar; });
+    window.calendar = calendar;
+    if (typeof define === 'function' && define.amd) {
+      define('calendar', [], () => { return calendar; });
     }
   }
-
-})();
+})(window);

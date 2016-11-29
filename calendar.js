@@ -2,7 +2,7 @@
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-(function () {
+(function (window) {
   var calendar = function calendar() {
     var config = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
@@ -101,14 +101,14 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     };
   };
 
-  if ((typeof module === 'undefined' ? 'undefined' : _typeof(module)) === "object" && module && _typeof(module.exports) === "object") {
+  if ((typeof module === 'undefined' ? 'undefined' : _typeof(module)) === 'object' && module && _typeof(module.exports) === 'object') {
     module.exports = calendar;
   } else {
     window.calendar = calendar;
-    if (typeof define === "function" && define.amd) {
-      define("calendar", [], function () {
+    if (typeof define === 'function' && define.amd) {
+      define('calendar', [], function () {
         return calendar;
       });
     }
   }
-})();
+})(window);

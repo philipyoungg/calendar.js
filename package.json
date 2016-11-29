@@ -5,7 +5,7 @@
   "main": "calendar.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel src -o index.js"
+    "build": "babel src/calendar.js -o calendar.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,9 @@
   "homepage": "https://github.com/philipyoungg/calendar.js#readme",
   "devDependencies": {
     "babel-cli": "^6.14.0",
-    "babel-preset-es2015": "^6.14.0"
+    "babel-eslint": "^6.1.2",
+    "babel-preset-es2015": "^6.14.0",
+    "eslint": "^3.6.0",
+    "eslint-plugin-babel": "^3.3.0"
   }
 }
